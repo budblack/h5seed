@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!--<transition name="fade">-->
-      <router-view/>
+    <router-view/>
     <!--</transition>-->
   </div>
 </template>
@@ -10,8 +10,10 @@
   import logger from './lib/logger';
   import '././assets/css/vue-transitions.css';
 
-  require('./assets/css/mui.min.css');
+  //  require('./assets/css/mui.min.css');
   //  require('./assets/js/mui.min.js');
+  require('./assets/css/mzui.css');
+  require('./assets/js/mzui.js');
 
   logger.log('应用启动');
 
