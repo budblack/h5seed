@@ -1,34 +1,58 @@
 <template>
   <div id="app">
-    <!--<transition name="fade">-->
-    <router-view/>
-    <!--</transition>-->
+    <UtilBarHead></UtilBarHead>
+
+    <div class="">
+      <!--<div class="with-heading-top">-->
+      <transition name="fade">
+        <router-view></router-view>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
+  /*eslint-disable no-undef*/
+
+  import FastClick from 'fastclick';
+
   import logger from './lib/logger';
   import '././assets/css/vue-transitions.css';
+  import UtilBarHead from './components/util-bar-head.vue';
 
-  //  require('./assets/css/mui.min.css');
-  //  require('./assets/js/mui.min.js');
+
+  require('./assets/css/font-awesome.css');
   require('./assets/css/mzui.css');
   require('./assets/js/mzui.js');
+
+
+  FastClick.attach(document.body);
+
+  /**
+   * @returns {{}} null
+   */
+  function plusReady () {
+    logger.log('plus对象就绪');
+  }
+
+  document.addEventListener('plusready', plusReady, false);
 
   logger.log('应用启动');
 
   export default {
-    name: 'app'
+    name      : 'app',
+    components: {
+      UtilBarHead
+    },
+    mounted   : function () {
+      document.addEventListener('swipeRight', (e) => {
+        console.log('返回');
+        this.$router.back(-1);
+        e.stopPropagation();
+      });
+    }
   };
 </script>
 
 <style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
 </style>

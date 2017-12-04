@@ -1,12 +1,13 @@
 <template>
   <div>
-    <CCollectionLabel></CCollectionLabel>
+    <!--<CCollectionLabel></CCollectionLabel>-->
     <CListGroupDate></CListGroupDate>
   </div>
 </template>
 
 <script>
-  import CCollectionLabel from '../components/HelloWorld.vue';
+  /*eslint-disable no-undef*/
+  import CCollectionLabel from '../components/util-bar-head.vue';
   import CListGroupDate from '../components/list-group-date.vue';
 
   export default {
