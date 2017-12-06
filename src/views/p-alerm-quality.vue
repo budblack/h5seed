@@ -89,8 +89,11 @@
 
 <script>
   /*eslint-disable no-undef*/
+  /*eslint-disable no-magic-numbers*/
   import CCollectionLabel from '../components/util-bar-head.vue';
   import CListGroupDate from '../components/list-group-date.vue';
+
+  import TWEEN from '@tweenjs/tween.js';
 
   export default {
     components: {
@@ -127,23 +130,26 @@
     },
     methods   : {
       onSideBtnTouchstart: function (e) {
-        //        console.log(e);
         this.touchStartEvent = e;
-        console.log(this.$style);
       },
       onSideBtnTouchmove : function (e) {
-        let mx = Math.min(window.innerWidth - 16, e.touches[0].clientX) - 80;
-        console.log(e.touches[0].clientX);
+        let mx           = Math.min(window.innerWidth - 16, e.touches[0].clientX) - 80;
         this.sidebarLeft = Math.max(mx, 0);
-
-        console.log(this.sidebarLeft);
         if (this.touchStartEvent) {
           e.stopPropagation();
         }
       },
       onSideBtnTouchend  : function (e) {
         this.touchStartEvent = false;
-        this.sidebarLeft     = this.sidebarLeft > window.innerWidth / 2 ? window.innerWidth - 80 : 0;
+        //        this.sidebarLeft     = this.sidebarLeft > window.innerWidth / 2 ? window.innerWidth - 80 : 0;
+        let a                = { l: this.sidebarLeft };
+        new TWEEN.Tween(a)
+          .to({ l: this.sidebarLeft > window.innerWidth / 2 ? window.innerWidth - 80 : 0 }, 200)
+          .easing(TWEEN.Easing.Quadratic.Out)
+          .onUpdate(() => {
+            this.sidebarLeft = a.l;
+          })
+          .start();
       }
     }
   };

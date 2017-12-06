@@ -13,6 +13,7 @@
 
 <script>
   /*eslint-disable no-undef*/
+  import TWEEN from '@tweenjs/tween.js';
 
   import FastClick from 'fastclick';
 
@@ -44,7 +45,15 @@
     components: {
       UtilBarHead
     },
+    methods   : {
+      updateFrame: function (time) {
+        requestAnimationFrame(this.updateFrame);
+        TWEEN.update(time);
+      }
+    },
     mounted   : function () {
+      this.updateFrame();
+
       document.addEventListener('swipeRight', (e) => {
         console.log('返回', JSON.stringify(e));
         this.$router.back(-1);
