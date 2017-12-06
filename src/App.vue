@@ -46,7 +46,7 @@
     },
     mounted   : function () {
       document.addEventListener('swipeRight', (e) => {
-        console.log('返回');
+        console.log('返回', JSON.stringify(e));
         this.$router.back(-1);
         e.stopPropagation();
       });
@@ -55,4 +55,12 @@
 </script>
 
 <style>
+  body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
 </style>

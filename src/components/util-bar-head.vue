@@ -3,7 +3,7 @@
     <div class="title">
       <router-link to="/">
         <i class="fa fw fa-info-circle"></i>&nbsp;
-        <strong>大渡河工程数据管控中心</strong>
+        <strong>数据管控中心</strong>
       </router-link>
     </div>
     <nav class="nav">
@@ -12,6 +12,9 @@
     </nav>
   </div>
 </template>
-<style>
-
+<style scoped>
+  .heading {
+    z-index: 10;
+    box-shadow: 0 0 8px #000;
+  }
 </style>
